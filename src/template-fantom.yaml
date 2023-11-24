@@ -1,0 +1,28 @@
+specVersion: 0.0.5
+description: Spectrum Router
+repository: https://github.com/Spectrum-Digital/spectrum-router-subgraph.git
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SpookyswapV2Factory
+    network: '{{ network }}'
+    source:
+      address: '{{ spookyswapV2FactoryAddress }}'
+      abi: PoolFactory
+      startBlock: {{spookyswapV2FactoryStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: mappings.ts
+      entities:
+        - PoolFactory
+      abis:
+        - name: ERC20
+          file: ./abi/ERC20.json
+        - name: PoolFactory
+          file: ./abi/POOL_0_1_ADDRESS_LEN.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: onSpookyswapV2PoolCreated

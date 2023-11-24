@@ -1,0 +1,20 @@
+type PoolFactory @entity {
+  id: ID! # address
+  pools: [Pool!]! @derivedFrom(field: "factory")
+}
+
+type Pool @entity {
+  id: ID! # address
+  factory: PoolFactory!
+  decimals: Int!
+  token0: Token!
+  token1: Token!
+  stable: Boolean!
+}
+
+type Token @entity {
+  id: ID! # address
+  name: String!
+  symbol: String!
+  decimals: Int!
+}

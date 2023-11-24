@@ -1,0 +1,28 @@
+specVersion: 0.0.5
+description: Spectrum Router
+repository: https://github.com/Spectrum-Digital/spectrum-router-subgraph.git
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: AerodromeFactory
+    network: '{{ network }}'
+    source:
+      address: '{{ aerodromeFactoryAddress }}'
+      abi: PoolFactory
+      startBlock: {{aerodromeFactoryStartBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: mappings.ts
+      entities:
+        - PoolFactory
+      abis:
+        - name: ERC20
+          file: ./abi/ERC20.json
+        - name: PoolFactory
+          file: ./abi/POOL_0_1_STABLE_ADDRESS_LEN.json
+      eventHandlers:
+        - event: PoolCreated(indexed address,indexed address,indexed bool,address,uint256)
+          handler: onAerodromePoolCreated
