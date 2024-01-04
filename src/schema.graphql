@@ -5,6 +5,7 @@ type PoolFactory @entity {
 
 type Pool @entity {
   id: ID! # address
+  blockNumber: BigInt!
   factory: PoolFactory!
   decimals: Int!
   token0: Token!

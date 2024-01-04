@@ -5,15 +5,18 @@
   "version": "1.0.0",
   "repository": "https://github.com/Spectrum-Digital/spectrum-router-subgraph.git",
   "scripts": {
-    "codegen": "graph codegen src/subgraph.yaml --output-dir src/generated/",
-    "build": "graph build src/subgraph.yaml",
-    "auth": "graph auth --product hosted-service",
-    "prepare:arbitrum": "mustache src/config/arbitrum.json src/template-arbitrum.yaml > src/subgraph.yaml",
-    "prepare:base": "mustache src/config/base.json src/template-base.yaml > src/subgraph.yaml",
-    "prepare:fantom": "mustache src/config/fantom.json src/template-fantom.yaml > src/subgraph.yaml",
-    "deploy:arbitrum": "pnpm prepare:arbitrum && graph deploy --product hosted-service coinlordd/spectrum-router-arbitrum src/subgraph.yaml",
-    "deploy:base": "pnpm prepare:base && graph deploy --studio spectrum-router-base src/subgraph.yaml",
-    "deploy:fantom": "pnpm prepare:fantom && graph deploy --product hosted-service coinlordd/spectrum-router-fantom src/subgraph.yaml"
+    "codegen": "graph codegen subgraph.yaml --output-dir src/generated/",
+    "build": "graph build subgraph.yaml",
+    "prepare:aerodrome-v2": "mustache src/config/aerodrome-v2.json src/template-aerodrome-v2.yaml > subgraph.yaml",
+    "prepare:based-v2": "mustache src/config/based-v2.json src/template-based-v2.yaml > subgraph.yaml",
+    "prepare:equalizer-v2": "mustache src/config/equalizer-v2.json src/template-equalizer-v2.yaml > subgraph.yaml",
+    "prepare:equalizer-v3": "mustache src/config/equalizer-v3.json src/template-equalizer-v3.yaml > subgraph.yaml",
+    "prepare:camelot": "mustache src/config/camelot.json src/template-camelot.yaml > subgraph.yaml",
+    "prepare:pancakeswap-v2": "mustache src/config/pancakeswap-v2.json src/template-pancakeswap-v2.yaml > subgraph.yaml",
+    "prepare:ramses": "mustache src/config/ramses.json src/template-ramses.yaml > subgraph.yaml",
+    "prepare:spookyswap-v2": "mustache src/config/spookyswap-v2.json src/template-spookyswap-v2.yaml > subgraph.yaml",
+    "prepare:velodrome-v2": "mustache src/config/velodrome-v2.json src/template-velodrome-v2.yaml > subgraph.yaml",
+    "prepare:wigoswap-v2": "mustache src/config/wigoswap-v2.json src/template-wigoswap-v2.yaml > subgraph.yaml"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.61.0",
